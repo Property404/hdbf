@@ -36,7 +36,6 @@ int main(int argc, char *argv[])
 		/* Interpret source code */
 		optimize(fp_contents);
 		run(fp_contents);
-
 		/* Free source code */
 		free(fp_contents);
 	}
