@@ -4,7 +4,7 @@
 
 
 /* Compare Leaf's coordinates (NOT VALUE) */
-int compare(struct Leaf a, int* bcoord,int bdim){
+static int compare(struct Leaf a, int* bcoord,int bdim){
 	int i;
 	for(i=0;i<(a.dim>bdim?bdim:a.dim);i++){
 		if(a.coord[i]!=bcoord[i]) return a.coord[i]>bcoord[i]?1:-1;
@@ -22,35 +22,34 @@ struct Leaf* traverse(struct Leaf* root,int* bcoord, int bdim){
 		return root;
 	}else if(compare(*root,bcoord,bdim)>0){
 		if(root->right==NULL){
-			// Create rightwise
-			root->right = (struct Leaf*)malloc(sizeof(struct Leaf));
+			/* Create leaf rightwise*/
+			root->right = malloc(sizeof(struct Leaf));
 			root->right->value=0;
 			root->right->coord=malloc(bdim);
-			// Hard copy
+			/* Hard copy bcoord*/
 			for(i=0;i<bdim;i++)root->right->coord[i]=bcoord[i];
 			root->right->dim=bdim;
 			root->right->right=NULL;
 			root->right->left=NULL;
-			printf("Creating right\n");
 			return root->right;
 		}else{
-			// Recurse righwise
+			/* Recurse righwise*/
 			return traverse(root->right,bcoord,bdim);
 		}
 	}else{
 		if(root->left==NULL){
-			// Create leftwise
-			root->left = (struct Leaf*)malloc(sizeof(struct Leaf));
+			/* Create leaf leftwise*/
+			root->left = malloc(sizeof(struct Leaf));
 			root->left->value=0;
 			root->left->coord=malloc(bdim);
-			// Hard copy
+			/* Hard copy bcoord*/
 			for(i=0;i<bdim;i++)root->left->coord[i]=bcoord[i];
 			root->left->dim=bdim;
 			root->left->right=NULL;
 			root->left->left=NULL;
 			return root->left;
 		}else{
-			// Recurse leftwise
+			/* Recurse leftwise*/
 			return traverse(root->left,bcoord,bdim);
 		}
 	}

@@ -1,3 +1,5 @@
+#ifndef HEADER_BINARYTREE
+#define HEADER_BINARYTREE 1
 /* Binary tree node */
 struct Leaf{
 	struct Leaf* right;
@@ -7,6 +9,6 @@ struct Leaf{
 	int dim; /* # Of coordinates. should be AT LEAST 1 */
 };
 
-int compare(struct Leaf a, int* bcoord,int bdim);
-
+/* Find matching leaf, make new one if it doesn't exist*/
 struct Leaf* traverse(struct Leaf* root,int* bcoord, int bdim);
+#endif
