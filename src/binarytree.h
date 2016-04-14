@@ -11,4 +11,7 @@ struct Leaf{
 
 /* Find matching leaf, make new one if it doesn't exist*/
 struct Leaf* traverse(struct Leaf* root,int* bcoord, int bdim);
+
+/* Free entire tree*/
+void deleteTree(struct Leaf* root);
 #endif

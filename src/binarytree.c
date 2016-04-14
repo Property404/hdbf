@@ -15,7 +15,30 @@ static int compare(struct Leaf a, int* bcoord,int bdim){
 	return 0;
 }
 
-/* traverse/insert into binary tree */
+void deleteTree(struct Leaf* root){
+	while(root->right!=NULL || root->left!=NULL){
+		if(root->right!=NULL){
+			if(root->right->left==NULL && root->right->right==NULL){
+				free(root->right->coord);
+				free(root->right);
+				root->right=NULL;
+			}else{
+				deleteTree(root->right);
+			}
+		}
+		if(root->left!=NULL){
+			if(root->left->left==NULL && root->left->right==NULL){
+				free(root->left->coord);
+				free(root->left);
+				root->left=NULL;
+			}else{
+				deleteTree(root->left);
+			}
+		}
+	}
+}
+
+/* traverse/insert into binary tree*/
 struct Leaf* traverse(struct Leaf* root,int* bcoord, int bdim){
 	int i;
 	if(compare(*root,bcoord,bdim)==0){
@@ -25,7 +48,7 @@ struct Leaf* traverse(struct Leaf* root,int* bcoord, int bdim){
 			/* Create leaf rightwise*/
 			root->right = malloc(sizeof(struct Leaf));
 			root->right->value=0;
-			root->right->coord=malloc(bdim);
+			root->right->coord=malloc(sizeof(int)*bdim);
 			/* Hard copy bcoord*/
 			for(i=0;i<bdim;i++)root->right->coord[i]=bcoord[i];
 			root->right->dim=bdim;
@@ -33,7 +56,7 @@ struct Leaf* traverse(struct Leaf* root,int* bcoord, int bdim){
 			root->right->left=NULL;
 			return root->right;
 		}else{
-			/* Recurse righwise*/
+			/* Recurse rightwise*/
 			return traverse(root->right,bcoord,bdim);
 		}
 	}else{
@@ -41,7 +64,7 @@ struct Leaf* traverse(struct Leaf* root,int* bcoord, int bdim){
 			/* Create leaf leftwise*/
 			root->left = malloc(sizeof(struct Leaf));
 			root->left->value=0;
-			root->left->coord=malloc(bdim);
+			root->left->coord=malloc(sizeof(int)*bdim);
 			/* Hard copy bcoord*/
 			for(i=0;i<bdim;i++)root->left->coord[i]=bcoord[i];
 			root->left->dim=bdim;

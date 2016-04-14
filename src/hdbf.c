@@ -4,22 +4,13 @@
 #include "hdbf.h"
 #include "binarytree.h"
 
-#define inc_dpointer if((++dpointer)>=dim)coord=realloc(coord,++dim);coord[dim-1]=0
-#define dec_dpointer --dpointer
-#define inc_wpointer coord[dpointer]+=1;cell=traverse(root,coord,dim)
-#define dec_wpointer coord[dpointer]-=1;cell=traverse(root,coord,dim)
-#define inc_cell cell->value++
-#define dec_cell cell->value--
-#define out_cell printf("%c",cell->value)
-
-
 void run(const char* code){
 	/* Set up interpretation variables */
 	unsigned int dpointer=0;/* dimensional pointer */
 	unsigned int dim=1; /* Number of dimensions working with*/
-	int* coord=malloc(dim); /* current coordinates*/
-	int* loopqueue=malloc(0);/* loop list*/
-	char* buffer=malloc(1);/* alloc now so it doesn't fail on `free`*/
+	int* coord=malloc(sizeof(int)*dim); /* current coordinates*/
+	int* loopqueue=malloc(sizeof(int));/* loop list*/
+	char* buffer=malloc(sizeof(char));/* alloc now so it doesn't fail on `free`*/
 	int loops=0; /* Number of loops*/
 	int offness=-1;/*Indicates offness (value is -1 or location of loop)*/
 	
@@ -37,7 +28,7 @@ void run(const char* code){
 	root->right=NULL;
 	root->left=NULL;
 	root->value=0;
-	root->coord=malloc(dim);root->coord[0]=0;
+	root->coord=malloc(sizeof(int)*dim);root->coord[0]=0;
 	root->dim=dim;
 	
 	/* Start interpretation */
@@ -49,7 +40,8 @@ void run(const char* code){
 					loops++;
 					
 					/* Safely reallocate memory*/
-					buffer=realloc(loopqueue,loops*sizeof(int));
+					/*printf("About to reallocate in '['\n");*/
+					buffer=malloc(loops*sizeof(int));
 					if(buffer==NULL){
 							fprintf(stderr,"Memory allocation error\n");
 							exit(1);
@@ -57,6 +49,11 @@ void run(const char* code){
 					memcpy(buffer,loopqueue,(loops-1)*sizeof(int));
 					loopqueue=malloc(loops*sizeof(int));
 					memcpy(loopqueue,buffer,loops*sizeof(int));
+					if(loops<=0){
+						fprintf(stderr,"loops below bounds\n");
+						exit(1);
+					}
+					
 					loopqueue[loops-1]=i;
 
 					/* Check if need to turn off*/
@@ -70,7 +67,7 @@ void run(const char* code){
 					
 					/* Delete last loopqueue value*/
 					loops--;
-					buffer=realloc(loopqueue,loops);
+					buffer=malloc(sizeof(int)*loops);
 					memcpy(buffer,loopqueue,sizeof(int)*loops);
 					loopqueue=malloc(sizeof(int)*loops);
 					memcpy(loopqueue,buffer,sizeof(int)*loops);
@@ -84,35 +81,56 @@ void run(const char* code){
 					}
 					break;
 				case '+':
-					inc_cell;
+					/* Increase value of cell*/
+					cell->value++;
 					break;
 				case '-':
-					dec_cell;
+					/* Decrease value of cell*/
+					cell->value--;
 					break;
 				case '^':
-					inc_dpointer;
+					/* Increase dimensional pointer*/
+					if((++dpointer)>=dim){
+						dim++;
+						buffer=malloc(sizeof(int)*dim);
+						memcpy(buffer,coord,dim-1);
+						coord=malloc(sizeof(int)*dim);
+						memcpy(coord,buffer,dim);
+						coord[dim-1]=0;
+					}
 					break;
 				case 'V':
-					dec_dpointer;
+					/* Decrease dimentional pointer*/
+					--dpointer;
 					break;
 				case '>':
-					inc_wpointer;
+					/* Go in positive direction of current vector*/
+					coord[dpointer]+=1;
+					cell=traverse(root,coord,dim);
 					break;
 				case '<':
-					dec_wpointer;
+					/* Go in negative direction of current vector*/
+					coord[dpointer]-=1;
+					cell=traverse(root,coord,dim);
 					break;
 				case '.':
-					out_cell;
+					printf("%c",cell->value);
 					break;
 			}
 		}
 	}
+	
+	/* Print out final coordinates*/
 	printf("\nCoordinates{");
 	for(i=0;i<dim;i++){printf("%s%d",(i==0?"":","),coord[i]);}
 	printf("}\n");
-	/*Free stuff*/
+	
+	/* Free stuff*/
+	deleteTree(root);
+	free(root->coord);
+	free(root);
 	free(coord);
 	free(loopqueue);
 	free(buffer);
-	/*TODO: delete binary tree*/
+	
 }
