@@ -1,0 +1,10 @@
+[
+	This program has different output in Brainfuck and Hyper-Dimensional Brainfuck
+	In brainfuck, this outputs `1434` for the input `1234`
+	In HDBF, this outputs `1234` for input `1234`
+]
+// Take input
+,>,^>,V<,
+
+// Print out
+^<V.>.^>.V<.
