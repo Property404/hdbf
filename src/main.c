@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
 	if (argc <= 1) {
 		/* No arguments */
-		fprintf(stderr, "hdbf: no arguments");
+		fprintf(stderr, "hdbf: no arguments\n");
 		exit(1);
 	} else {
 		int i, j;
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 					if (new_option == OPT_NONE) {
 						/* Option is invalid, abort */
 						fprintf(stderr,
-							"hdbf: no option `%c`",
+							"hdbf: no option `%c`\n",
 							argv[i][j]);
 						return 1;
 					}
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
 		free(fp_contents);
 		free(filename);
 	} else {
-		fprintf(stderr, "hdbf: no input files");
+		fprintf(stderr, "hdbf: no input files\n");
 		return 1;
 	}
 
