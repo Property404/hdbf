@@ -4,7 +4,7 @@
 
 
 /* Compare Leaf's coordinates (NOT VALUE) */
-static int compare(struct Leaf a, int *bcoord, int bdim)
+static int compare(struct Cell a, int *bcoord, int bdim)
 {
 	int i;
 	for (i = 0; i < (a.dim > bdim ? bdim : a.dim); i++) {
@@ -18,7 +18,7 @@ static int compare(struct Leaf a, int *bcoord, int bdim)
 	return 0;
 }
 
-void deleteTree(struct Leaf *root)
+void deleteWorld(struct Cell *root)
 {
 	/* Keep deleting until all leaves are gone
 	 ** Does not delete root */
@@ -32,7 +32,7 @@ void deleteTree(struct Leaf *root)
 				root->right = NULL;
 			} else {
 				/* Traverse starting at right */
-				deleteTree(root->right);
+				deleteWorld(root->right);
 			}
 		}
 		if (root->left != NULL) {
@@ -44,14 +44,14 @@ void deleteTree(struct Leaf *root)
 				root->left = NULL;
 			} else {
 				/* Traverse starting at left */
-				deleteTree(root->left);
+				deleteWorld(root->left);
 			}
 		}
 	}
 }
 
-/* traverse/insert into binary tree*/
-struct Leaf *traverse(struct Leaf *root, int *bcoord, int bdim)
+/* traverse/insert cell into world*/
+struct Cell *traverseWorld(struct Cell *root, int *bcoord, int bdim)
 {
 	int i;
 	if (compare(*root, bcoord, bdim) == 0) {
@@ -59,7 +59,7 @@ struct Leaf *traverse(struct Leaf *root, int *bcoord, int bdim)
 	} else if (compare(*root, bcoord, bdim) > 0) {
 		if (root->right == NULL) {
 			/* Create leaf rightwise */
-			root->right = malloc(sizeof(struct Leaf));
+			root->right = malloc(sizeof(struct Cell));
 			root->right->value = 0;
 			root->right->coord = malloc(sizeof(int) * bdim);
 			/* Hard copy bcoord */
@@ -71,12 +71,12 @@ struct Leaf *traverse(struct Leaf *root, int *bcoord, int bdim)
 			return root->right;
 		} else {
 			/* Recurse rightwise */
-			return traverse(root->right, bcoord, bdim);
+			return traverseWorld(root->right, bcoord, bdim);
 		}
 	} else {
 		if (root->left == NULL) {
-			/* Create leaf leftwise */
-			root->left = malloc(sizeof(struct Leaf));
+			/* Create cell leftwise */
+			root->left = malloc(sizeof(struct Cell));
 			root->left->value = 0;
 			root->left->coord = malloc(sizeof(int) * bdim);
 			/* Hard copy bcoord */
@@ -88,7 +88,7 @@ struct Leaf *traverse(struct Leaf *root, int *bcoord, int bdim)
 			return root->left;
 		} else {
 			/* Recurse leftwise */
-			return traverse(root->left, bcoord, bdim);
+			return traverseWorld(root->left, bcoord, bdim);
 		}
 	}
 }

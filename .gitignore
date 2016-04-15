@@ -1,4 +1,9 @@
-*/build/*
-*.pyc
-*.exe
-*~
+*
+!*.c
+!*.h
+!*.md
+!*.bf
+!*.hdbf
+!.gitignore
+!Makefile
+!*/

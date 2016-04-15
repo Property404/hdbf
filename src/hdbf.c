@@ -3,8 +3,9 @@
 #include <string.h>
 #include "hdbf.h"
 #include "binarytree.h"
+#include "options.h"
 
-void run(const char *code)
+void run(const char *code, int options)
 {
 	/* Set up interpretation variables */
 	unsigned int dpointer = 0;	/* dimensional pointer */
@@ -15,13 +16,16 @@ void run(const char *code)
 	int loops = 0;		/* Number of loops */
 	int offness = -1;	/*Indicates offness (value is -1 or location of loop) */
 
-	/* Binary tree variables */
-	struct Leaf *root = malloc(sizeof(struct Leaf));
-	struct Leaf *cell = root;
+	/* World variables */
+	struct Cell *root = malloc(sizeof(struct Cell));
+	struct Cell *cell = root;
 
 	/* Loop and temporary variables */
 	unsigned int i;
 	int v;
+
+	/* Set up options */
+	SET_OPTIONS_VARIABLE(options);
 
 	/* Set initial coordinates */
 	coord[0] = 0;
@@ -98,30 +102,40 @@ void run(const char *code)
 				cell->value--;
 				break;
 			case '^':
-				/* Increase dimensional pointer */
-				if ((++dpointer) >= dim) {
-					dim++;
-					buffer = malloc(sizeof(int) * dim);
-					memcpy(buffer, coord, dim);
-					coord = malloc(sizeof(int) * dim);
-					for (v = 0; v < (signed) dim; v++)
-						coord[v] = buffer[v];
-					coord[dim - 1] = 0;
+				if (!HAS_OPTION(OPT_PUREBF)) {
+					/* Increase dimensional pointer */
+					if ((++dpointer) >= dim) {
+						dim++;
+						buffer =
+						    malloc(sizeof(int) *
+							   dim);
+						memcpy(buffer, coord, dim);
+						coord =
+						    malloc(sizeof(int) *
+							   dim);
+						for (v = 0;
+						     v < (signed) dim; v++)
+							coord[v] =
+							    buffer[v];
+						coord[dim - 1] = 0;
+					}
 				}
 				break;
 			case 'V':
 				/* Decrease dimentional pointer */
-				--dpointer;
+				if (!HAS_OPTION(OPT_PUREBF)) {
+					--dpointer;
+				}
 				break;
 			case '>':
 				/* Go in positive direction of current vector */
 				coord[dpointer] += 1;
-				cell = traverse(root, coord, dim);
+				cell = traverseWorld(root, coord, dim);
 				break;
 			case '<':
 				/* Go in negative direction of current vector */
 				coord[dpointer] -= 1;
-				cell = traverse(root, coord, dim);
+				cell = traverseWorld(root, coord, dim);
 				break;
 			case '.':
 				putchar(cell->value);
@@ -133,15 +147,8 @@ void run(const char *code)
 		}
 	}
 
-	/* Print out final coordinates */
-	printf("\nCoordinates{");
-	for (v = 0; v < (signed) dim; v++) {
-		printf("%s%d", (v == 0 ? "" : ","), coord[v]);
-	}
-	printf("}\n");
-
 	/* Free stuff */
-	deleteTree(root);
+	deleteWorld(root);
 	free(root->coord);
 	free(root);
 	free(coord);
