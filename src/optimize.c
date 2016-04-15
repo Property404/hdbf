@@ -3,7 +3,7 @@
 void optimize(char *code)
 {
 	unsigned int i;
-	for (i = 0; i < strlen(code) - 1; i++) {
+	for (i = 0; code[i] != 0; i++) {
 		/* Remove any matching pairs */
 		if ((code[i] == '+' && code[i + 1] == '-')
 		    || (code[i] == '-' && code[i + 1] == '+')
@@ -20,7 +20,7 @@ void optimize(char *code)
 			code[j + i] = 0;
 
 			/* Go back 1 or 2 places */
-			i = i - (i > 0 ? 2 : 1);
+			i -= (i > 0 ? 2 : 1);
 		}
 	}
 }

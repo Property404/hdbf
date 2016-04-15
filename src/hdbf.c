@@ -39,7 +39,7 @@ void run(const char *code, int options)
 	root->dim = dim;
 
 	/* Start interpretation */
-	for (i = 0; i < strlen(code); i++) {
+	for (i = 0; code[i] != '\0'; i++) {
 		if (offness == -1 || code[i] == ']' || code[i] == '[') {
 			switch (code[i]) {
 			case '[':

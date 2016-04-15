@@ -7,10 +7,14 @@
 static int compare(struct Cell a, int *bcoord, int bdim)
 {
 	int i;
+
+	/* Compare up to the first zero */
 	for (i = 0; i < (a.dim > bdim ? bdim : a.dim); i++) {
 		if (a.coord[i] != bcoord[i])
 			return a.coord[i] > bcoord[i] ? 1 : -1;
 	}
+
+	/* Compare from the first zero onwards */
 	for (; i < (a.dim > bdim ? a.dim : bdim); i++) {
 		if (a.dim > bdim ? a.coord[i] : bcoord[i] != 0)
 			return (a.dim > bdim ? 1 : -1);
@@ -54,9 +58,10 @@ void deleteWorld(struct Cell *root)
 struct Cell *traverseWorld(struct Cell *root, int *bcoord, int bdim)
 {
 	int i;
-	if (compare(*root, bcoord, bdim) == 0) {
+	int difference = compare(*root, bcoord, bdim);
+	if (difference == 0) {
 		return root;
-	} else if (compare(*root, bcoord, bdim) > 0) {
+	} else if (difference > 0) {
 		if (root->right == NULL) {
 			/* Create leaf rightwise */
 			root->right = malloc(sizeof(struct Cell));
