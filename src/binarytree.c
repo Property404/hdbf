@@ -76,6 +76,7 @@ struct Cell *traverseWorld(struct Cell *root, int *bcoord, int bdim)
 			return root->right;
 		} else {
 			/* Recurse rightwise */
+			
 			return traverseWorld(root->right, bcoord, bdim);
 		}
 	} else {

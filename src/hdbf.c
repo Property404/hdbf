@@ -24,6 +24,9 @@ void run(const char *code, int options)
 	unsigned int i;
 	int v;
 
+	/* Performance ehancing variables */
+	int com_buffer=0; /* Command buffer */
+	
 	/* Set up options */
 	SET_OPTIONS_VARIABLE(options);
 
@@ -47,6 +50,7 @@ void run(const char *code, int options)
 				loops++;
 
 				/* Safely reallocate memory */
+				free(buffer);
 				buffer = malloc(loops * sizeof(int));
 				if (buffer == NULL) {
 					fprintf(stderr,
@@ -55,9 +59,12 @@ void run(const char *code, int options)
 				}
 				memcpy(buffer, loopqueue,
 				       (loops - 1) * sizeof(int));
+				free(loopqueue);
 				loopqueue = malloc(loops * sizeof(int));
 				memcpy(loopqueue, buffer,
 				       loops * sizeof(int));
+					   
+				/* Error if out of bounds */
 				if (loops <= 0) {
 					fprintf(stderr,
 						"loops below bounds\n");
@@ -77,9 +84,11 @@ void run(const char *code, int options)
 
 				/* Delete last loopqueue value */
 				loops--;
+				free(buffer);
 				buffer = malloc(sizeof(int) * loops);
 				memcpy(buffer, loopqueue,
 				       sizeof(int) * loops);
+				free(loopqueue);
 				loopqueue = malloc(sizeof(int) * loops);
 				memcpy(loopqueue, buffer,
 				       sizeof(int) * loops);
@@ -95,11 +104,15 @@ void run(const char *code, int options)
 				break;
 			case '+':
 				/* Increase value of cell */
-				cell->value++;
+				com_buffer=1;
+				while(code[i+1]=='+'){com_buffer++;i++;}
+				cell->value+=com_buffer;
 				break;
 			case '-':
 				/* Decrease value of cell */
-				cell->value--;
+				com_buffer=1;
+				while(code[i+1]=='-'){com_buffer++;i++;}
+				cell->value-=com_buffer;
 				break;
 			case '^':
 				if (!HAS_OPTION(OPT_PUREBF)) {
@@ -128,13 +141,17 @@ void run(const char *code, int options)
 				}
 				break;
 			case '>':
+				com_buffer=1;
+				while(code[i+1]=='>'){com_buffer++;i++;}
 				/* Go in positive direction of current vector */
-				coord[dpointer] += 1;
+				coord[dpointer] += com_buffer;
 				cell = traverseWorld(root, coord, dim);
 				break;
 			case '<':
+				com_buffer=1;
+				while(code[i+1]=='<'){com_buffer++;i++;}
 				/* Go in negative direction of current vector */
-				coord[dpointer] -= 1;
+				coord[dpointer] -= com_buffer;
 				cell = traverseWorld(root, coord, dim);
 				break;
 			case '.':
