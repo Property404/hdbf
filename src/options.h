@@ -1,4 +1,3 @@
-/* Preprocessor and bitwise operation black magic */
 #ifndef HEADER_OPTIONS
 #    define HEADER_OPTIONS 1
 	/* Define __option_var__ as pointer to the variable declared as

@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
 	if (argc <= 1) {
 		/* No arguments */
-		fprintf(stderr, "hdbf: no arguments\n");
+		fprintf(stderr, "hdbf: no arguments\nUsage: hdbf [options] filename\n");
 		exit(1);
 	} else {
 		int i, j;

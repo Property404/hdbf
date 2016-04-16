@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "binarytree.h"
 
-
 /* Compare Leaf's coordinates (NOT VALUE) */
 static int compare(struct Cell a, int *bcoord, int bdim)
 {

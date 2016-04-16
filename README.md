@@ -1,11 +1,7 @@
 # Hyper-Dimensional Brainfuck
 
-Hyper-Dimensional Brainfuck is an infite-dimensional version of the Brainfuck programming 
-
-language. Instead of a tape, we have a "world."
-Rays parallel to the axis of each dimension in the world are called "vectors," and act 
-
-very much like the Brainfuck tape. You can switch
+Hyper-Dimensional Brainfuck is an infite-dimensional version of the Brainfuck programming language. Instead of a tape, we have a "world."
+Rays parallel to the axis of each dimension in the world are called "vectors," and act very much like the Brainfuck tape. You can switch
 between vectors using the `^` and `V` commands.  
 
 # Commands:  
