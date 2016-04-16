@@ -5,7 +5,7 @@ void optimize(char *code)
 	unsigned int i;
 	for (i = 0; code[i] != 0; i++) {
 		/* Remove any matching pairs */
-		if ((code[i] == '+' && code[i + 1] == '-')
+			if ((code[i] == '+' && code[i + 1] == '-')
 		    || (code[i] == '-' && code[i + 1] == '+')
 		    || (code[i] == '<' && code[i + 1] == '>')
 		    || (code[i] == '>' && code[i + 1] == '<')

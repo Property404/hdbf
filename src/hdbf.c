@@ -119,10 +119,12 @@ void run(const char *code, int options)
 					/* Increase dimensional pointer */
 					if ((++dpointer) >= dim) {
 						dim++;
+						free(buffer);
 						buffer =
 						    malloc(sizeof(int) *
 							   dim);
 						memcpy(buffer, coord, dim);
+						free(coord);
 						coord =
 						    malloc(sizeof(int) *
 							   dim);
