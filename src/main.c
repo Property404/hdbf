@@ -15,21 +15,19 @@ int main(int argc, char *argv[])
 	/* Prepare options variables */
 	int options = 0;
 	SET_OPTIONS_VARIABLE(options);
-	ADD_OPTION(OPT_OPTIMIZE);
 
 	if (argc <= 1) {
 		/* No arguments */
 		fprintf(stderr, "hdbf: no arguments");
 		exit(1);
 	} else {
-		int i, j, len;
+		int i, j;
 
 		/* Look through arguments */
 		for (i = 1; i < argc; i++) {
 			if (argv[i][0] == '-') {
 				/* Check for valid options */
-				len = strlen(argv[i]);
-				for (j = 1; j < len; j++) {
+				for (j = 1; argv[i][j] != '\0'; j++) {
 					int new_option =
 					    GET_OPTION(argv[i][j]);
 					if (new_option == OPT_NONE) {
@@ -56,8 +54,8 @@ int main(int argc, char *argv[])
 		printf("Usage: hdbf [options] filename\n\n"
 		       "Options:\n"
 		       "\t-h\tPrint help message\n"
-		       "\t-o\tOptimize (default)\n"
-		       "\t-u\tDo not optimize\n"
+		       "\t-o\tOptimize before running\n"
+		       "\t-u\tDo not optimize(default)\n"
 		       "\t-b\tRun regular Brainfuck\n");
 	} else if (filename_set) {
 		/* Open file for reading */
@@ -68,7 +66,8 @@ int main(int argc, char *argv[])
 
 		/* Check for errors */
 		if (fp == NULL) {
-			fprintf(stderr, "hdbf: <%s> not found\n", argv[1]);
+			fprintf(stderr, "hdbf: file \"%s\" not found\n",
+				filename);
 			free(filename);
 			return 1;
 		}

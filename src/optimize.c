@@ -1,26 +1,35 @@
 #include "optimize.h"
 #include <string.h>
+#include <stdlib.h>
+
+#define OPPOSITE(n) (n=='+'?'-':n=='-'?'+':n=='<'?'>':n=='>'?'<':\
+					n=='^'?'V':n=='V'?'^':0)
+#define VALID_CHAR(n) (n=='+'||n=='-'||n=='<'||n=='>'||n=='['||n==']'\
+						|| n=='^' || n=='V' || n==',' || n=='.')
+
 void optimize(char *code)
 {
-	unsigned int i;
-	for (i = 0; code[i] != 0; i++) {
-		/* Remove any matching pairs */
-			if ((code[i] == '+' && code[i + 1] == '-')
-		    || (code[i] == '-' && code[i + 1] == '+')
-		    || (code[i] == '<' && code[i + 1] == '>')
-		    || (code[i] == '>' && code[i + 1] == '<')
-		    || (code[i] == '^' && code[i + 1] == 'V')
-		    || (code[i] == 'V' && code[i + 1] == '^')) {
+	unsigned int i, j;
+	unsigned int len = strlen(code);
 
-			/* Delete unnecessary section */
-			unsigned int j;
-			unsigned int len = strlen(code + i + 2);
-			for (j = 0; j < len; j++)
-				code[j + i] = code[j + i + 2];
-			code[j + i] = 0;
+	/* Return if code is empty string */
+	if (len == 0)
+		return;
 
-			/* Go back 1 or 2 places */
-			i -= (i > 0 ? 2 : 1);
+	/* Loop through code and add the OK characters */
+	for (i = 0, j = 0; i < len; i++) {
+		/* Add pairless valid characters */
+		if (i < (len - 2) && code[i] == OPPOSITE(code[i + 1])) {
+			i += 1;
+		} else if (VALID_CHAR(code[i])) {
+			code[j] = code[i];
+			j++;
 		}
+	}
+	code[j] = 0;
+
+	/* Recurse */
+	if (len != j) {
+		optimize(code);
 	}
 }
