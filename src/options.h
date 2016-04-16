@@ -20,6 +20,7 @@
 #    define OPT_OPTIMIZE 1<<0	/* Optimize HDBF code before interpreting */
 #    define OPT_HELP 1<<1	/* Display help message (do not interpret) */
 #    define OPT_PUREBF 1<<2	/* Interpret Brainfuck instead of HDBF */
+#    define OPT_VER 1<<2	/* Interpret Brainfuck instead of HDBF */
 
 
 	/* Get option from option code */
@@ -28,5 +29,6 @@
 	n=='o'?OPT_OPTIMIZE:\
 	n=='u'?-OPT_OPTIMIZE:\
 	n=='b'?OPT_PUREBF:\
+	n=='v'?OPT_VER:\
 	OPT_NONE)
 #endif

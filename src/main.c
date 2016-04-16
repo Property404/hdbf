@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#define HDBF_VERSION "hdbf 0.1"
 
 int main(int argc, char *argv[])
 {
@@ -18,7 +18,8 @@ int main(int argc, char *argv[])
 
 	if (argc <= 1) {
 		/* No arguments */
-		fprintf(stderr, "hdbf: no arguments\nUsage: hdbf [options] filename\n");
+		fprintf(stderr,
+			"hdbf: no arguments\nUsage: hdbf [options] filename\n");
 		exit(1);
 	} else {
 		int i, j;
@@ -56,7 +57,10 @@ int main(int argc, char *argv[])
 		       "\t-h\tPrint help message\n"
 		       "\t-o\tOptimize before running\n"
 		       "\t-u\tDo not optimize(default)\n"
-		       "\t-b\tRun regular Brainfuck\n");
+		       "\t-b\tRun regular Brainfuck\n"
+		       "\t-v\tDisplay version number\n");
+	} else if (HAS_OPTION(OPT_VER)) {
+		printf(HDBF_VERSION "\n");
 	} else if (filename_set) {
 		/* Open file for reading */
 		FILE *fp;
