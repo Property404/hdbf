@@ -13,6 +13,8 @@ between vectors using the `^` and `V` commands.
 `V` - switch to the vector parallel to the previous dimension axis  
 `.` - print out contents of current cell  
 `,` - input from STDIN  
+`[` - skip to matching `]` if cell values zero  
+`]` - return to matching `[`  
 
 # Example:  
 Let's say we're only considering a 2-dimensional plane of the world  
