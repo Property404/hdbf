@@ -20,7 +20,7 @@
 #    define OPT_OPTIMIZE 1<<0	/* Optimize HDBF code before interpreting */
 #    define OPT_HELP 1<<1	/* Display help message (do not interpret) */
 #    define OPT_PUREBF 1<<2	/* Interpret Brainfuck instead of HDBF */
-#    define OPT_VER 1<<2	/* Interpret Brainfuck instead of HDBF */
+#    define OPT_VER 1<<3	/* Show version number */
 
 
 	/* Get option from option code */
