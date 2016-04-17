@@ -9,8 +9,8 @@ between vectors using the `^` and `V` commands.
 `-` - decrease current cell  
 `>` - shift positively along current vector  
 `<` - shift negatively along current vector  
-`^` - switch to the vector parallel to the next dimensional axis  
-`V` - switch to the vector parallel to the previous dimension axis  
+`^` - switch to a vector parallel to the next dimensional axis, that pass through the current cell  
+`V` - switch to a vector parallel to the previous dimension axis, that pass through the current cell  
 `.` - print out contents of current cell  
 `,` - input from STDIN  
 `[` - skip to matching `]` if cell values zero  
@@ -23,4 +23,12 @@ Let's say we're only considering a 2-dimensional plane of the world
 `[0,1][1,1]`  
 `[0,0][1,0]` 
 
-You start at `0,0`. To shift to `1,0`, you would use `>`. To switch to `1,1` from there, you would use `^>`. From there, to switch to `0,1`, you would just use `V<`, and to switch back to `0,0`, you use `^<`
+You start at `0,0`. To shift to `1,0`, you would use `>`. To switch to `1,1` from there, you would use `^>`. From there, to switch to `0,1`, you would just use `V<`, and to switch back to `0,0`, you use `^<`  
+
+Now Let's consider a three dimensional cube, specifically a 3x3x3 cube.  
+To go from the bottom, left, front corner of the cube, i.e `(0,0,0)` to the top, right, back corner, i.e. `(2,2,2)` You would do the following: 
+
+`>>^>>^>>`  
+
+For a 4x4x4x4 tesseract:  
+`>>>^>>>^>>>^>>>`
