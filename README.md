@@ -25,7 +25,7 @@ Let's say we're only considering a 2-dimensional plane of the world
 
 You start at `0,0`. To shift to `1,0`, you would use `>`. To switch to `1,1` from there, you would use `^>`. From there, to switch to `0,1`, you would just use `V<`, and to switch back to `0,0`, you use `^<`  
 
-Now Let's consider a three dimensional cube, specifically a 3x3x3 cube.  
+Now let's consider a three dimensional cube, specifically a 3x3x3 cube.  
 To go from the bottom, left, front corner of the cube, i.e `(0,0,0)` to the top, right, back corner, i.e. `(2,2,2)` You would do the following: 
 
 `>>^>>^>>`  

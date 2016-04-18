@@ -45,8 +45,7 @@ int main(int argc, char *argv[])
 				filename =
 				    malloc(sizeof(char) * strlen(argv[i]));
 				strcpy(filename, argv[i]);
-				if (!HAS_OPTION(OPT_HELP))
-					filename_set = 1;
+				filename_set = 1;
 				break;
 			}
 		}
@@ -95,11 +94,13 @@ int main(int argc, char *argv[])
 
 		/* Free everything */
 		free(fp_contents);
-		free(filename);
 	} else {
 		fprintf(stderr, "hdbf: no input files\n");
 		return 1;
 	}
 
+	/* Finish */
+	if (filename_set)
+		free(filename);
 	return 0;
 }
