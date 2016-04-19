@@ -16,8 +16,8 @@ between vectors using the `^` and `V` commands.
 `[` - skip to matching `]` if cell values zero  
 `]` - return to matching `[`  
 
-Debug Commands(enabled with `-d`):  
-`#` - print out coordinates and value of current cell
+Debug Commands (enabled with `-d`):  
+`#` - print out coordinates and value of current cell  
 `?` - print out current coordinates
 
 # Interdimensional Travel
