@@ -4,8 +4,8 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define HDBF_VERSION "hdbf 0.1"
-
+#define HDBF_VERSION "hdbf 1.0"
+#define HDBF_USAGE "Usage: hdbf [options] [filename | -i cmd]\n"
 int main(int argc, char *argv[])
 {
 	/* File Variables */
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 	if (argc <= 1) {
 		/* No arguments */
 		fprintf(stderr,
-			"hdbf: no arguments\nUsage: hdbf [options] filename\n");
+			"hdbf: no arguments\n"HDBF_USAGE);
 		exit(1);
 	} else {
 		int i, j;
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	if (HAS_OPTION(OPT_HELP)) {
-		printf("Usage: hdbf [options] filename\n\n"
+		printf(HDBF_USAGE"\n"
 		       "Options:\n"
 		       "\t-h\tPrint help message\n"
 		       "\t-o\tOptimize before running\n"
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 		       "\t-b\tRun regular Brainfuck\n"
 		       "\t-v\tDisplay version number\n"
                        "\t-d\tAllow debugging commands\n"
-                       "\t-i\tPass string as code\n");
+                       "\t-i cmd\tPass string as code\n");
 	} else if (HAS_OPTION(OPT_VER)) {
 		printf(HDBF_VERSION "\n");
 	} else if (HAS_OPTION(OPT_STRING)) {
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 			if(HAS_OPTION(OPT_OPTIMIZE))optimize(filename, options);
 			run(filename, options);
 		}else{
-			fprintf(stderr, "hdbf: no command\n");
+			fprintf(stderr, "hdbf: no command\n"HDBF_USAGE);
 			exit(1);
 		}
 	} else if (filename_set) {
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 		/* Free everything */
 		free(fp_contents);
 	} else {
-		fprintf(stderr, "hdbf: no input files\n");
+		fprintf(stderr, "hdbf: no input files\n"HDBF_USAGE);
 		return 1;
 	}
 
