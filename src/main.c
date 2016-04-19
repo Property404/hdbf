@@ -57,9 +57,19 @@ int main(int argc, char *argv[])
 		       "\t-o\tOptimize before running\n"
 		       "\t-u\tDo not optimize(default)\n"
 		       "\t-b\tRun regular Brainfuck\n"
-		       "\t-v\tDisplay version number\n");
+		       "\t-v\tDisplay version number\n"
+                       "\t-d\tAllow debugging commands\n"
+                       "\t-i\tPass string as code\n");
 	} else if (HAS_OPTION(OPT_VER)) {
 		printf(HDBF_VERSION "\n");
+	} else if (HAS_OPTION(OPT_STRING)) {
+		if(filename_set){
+			if(HAS_OPTION(OPT_OPTIMIZE))optimize(filename, options);
+			run(filename, options);
+		}else{
+			fprintf(stderr, "hdbf: no command\n");
+			exit(1);
+		}
 	} else if (filename_set) {
 		/* Open file for reading */
 		FILE *fp;
@@ -88,7 +98,7 @@ int main(int argc, char *argv[])
 
 		/* Interpret source code */
 		if (HAS_OPTION(OPT_OPTIMIZE)) {
-			optimize(fp_contents);
+			optimize(fp_contents, options);
 		}
 		run(fp_contents, options);
 

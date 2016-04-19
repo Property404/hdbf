@@ -22,7 +22,7 @@ void run(const char *code, int options)
 
 	/* Loop and temporary variables */
 	unsigned int i;
-	int v;
+	unsigned int v;
 
 	/* Performance enhancing variables */
 	int com_buffer = 0;	/* Command buffer */
@@ -95,7 +95,7 @@ void run(const char *code, int options)
 
 				/* Turn on if necessary */
 				if (offness != -1) {
-					if (offness == v)
+					if (offness == (signed)v)
 						offness = -1;
 				} else {
 					/* Go back to matching `[` */
@@ -129,16 +129,19 @@ void run(const char *code, int options)
 						buffer =
 						    malloc(sizeof(int) *
 							   dim);
-						memcpy(buffer, coord, dim);
+                        for(v=0;v<dim;v++){
+                            buffer[v]=coord[v];
+                        }
 						free(coord);
 						coord =
 						    malloc(sizeof(int) *
 							   dim);
 						for (v = 0;
-						     v < (signed) dim; v++)
+                             v < dim; v++){
 							coord[v] =
 							    buffer[v];
-						coord[dim - 1] = 0;
+                        }
+						//coord[dim - 1] = 0;
 					}
 				}
 				break;
@@ -174,6 +177,24 @@ void run(const char *code, int options)
 			case ',':
 				cell->value = getchar();
 				break;
+            case '?':
+                if(HAS_OPTION(OPT_DEBUG)){
+                    printf("[(");
+                    for(v=0;v<dim;v++){
+                        printf("%d%c",coord[v], (v==dim-1)?')':',');
+                    }
+                    printf("]\n");
+                }
+                break;
+			case '#':
+				if(HAS_OPTION(OPT_DEBUG)){
+					printf("{(");
+					for(v=0;v<(unsigned)(cell->dim);v++){
+						printf("%d%c",cell->coord[v], (v==(unsigned)(cell->dim-1))?')':',');
+					}
+					printf("=%d}\n", cell->value);
+				}
+                break;
 			}
 		}
 	}

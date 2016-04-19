@@ -1,16 +1,18 @@
 #include "optimize.h"
+#include "options.h"
 #include <string.h>
 #include <stdlib.h>
 
 #define OPPOSITE(n) (n=='+'?'-':n=='-'?'+':n=='<'?'>':n=='>'?'<':\
 					n=='^'?'V':n=='V'?'^':0)
 #define VALID_CHAR(n) (n=='+'||n=='-'||n=='<'||n=='>'||n=='['||n==']'\
-						|| n=='^' || n=='V' || n==',' || n=='.')
+						|| n=='^' || n=='V' || n==',' || n=='.' || (HAS_OPTION(OPT_DEBUG) && (n=='#')))
 
-void optimize(char *code)
+void optimize(char *code, int options)
 {
 	unsigned int i, j;
 	unsigned int len = strlen(code);
+	SET_OPTIONS_VARIABLE(options);
 
 	/* Return if code is empty string */
 	if (len == 0)
@@ -30,6 +32,6 @@ void optimize(char *code)
 
 	/* Recurse */
 	if (len != j) {
-		optimize(code);
+		optimize(code, options);
 	}
 }

@@ -21,6 +21,8 @@
 #    define OPT_HELP 1<<1	/* Display help message (do not interpret) */
 #    define OPT_PUREBF 1<<2	/* Interpret Brainfuck instead of HDBF */
 #    define OPT_VER 1<<3	/* Show version number */
+#    define OPT_DEBUG 1<<4	/* Allow debug commands */
+#    define OPT_STRING 1<<5	/* Lets argument string run as code instead of file */
 
 
 	/* Get option from option code */
@@ -30,5 +32,7 @@
 	n=='u'?-OPT_OPTIMIZE:\
 	n=='b'?OPT_PUREBF:\
 	n=='v'?OPT_VER:\
+	n=='d'?OPT_DEBUG:\
+	n=='i'?OPT_STRING:\
 	OPT_NONE)
 #endif
