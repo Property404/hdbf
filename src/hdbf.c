@@ -136,12 +136,11 @@ void run(const char *code, int options)
 						coord =
 						    malloc(sizeof(int) *
 							   dim);
-						for (v = 0;
-                             v < dim; v++){
+						for (v = 0; v < dim; v++){
 							coord[v] =
 							    buffer[v];
-                        }
-						//coord[dim - 1] = 0;
+                                                }
+						coord[dim - 1] = 0;
 					}
 				}
 				break;
