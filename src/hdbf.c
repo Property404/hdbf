@@ -129,16 +129,19 @@ void run(const char *code, int options)
 						buffer =
 						    malloc(sizeof(int) *
 							   dim);
-						memcpy(buffer, coord, dim);
+                        for(v=0;v<dim;v++){
+                            buffer[v]=coord[v];
+                        }
 						free(coord);
 						coord =
 						    malloc(sizeof(int) *
 							   dim);
 						for (v = 0;
-						     v < dim; v++)
+                             v < dim; v++){
 							coord[v] =
 							    buffer[v];
-						coord[dim - 1] = 0;
+                        }
+						//coord[dim - 1] = 0;
 					}
 				}
 				break;
@@ -174,6 +177,15 @@ void run(const char *code, int options)
 			case ',':
 				cell->value = getchar();
 				break;
+            case '?':
+                if(HAS_OPTION(OPT_DEBUG)){
+                    printf("[(");
+                    for(v=0;v<dim;v++){
+                        printf("%d%c",coord[v], (v==dim-1)?')':',');
+                    }
+                    printf("]\n");
+                }
+                break;
 			case '#':
 				if(HAS_OPTION(OPT_DEBUG)){
 					printf("{(");
@@ -182,6 +194,7 @@ void run(const char *code, int options)
 					}
 					printf("=%d}\n", cell->value);
 				}
+                break;
 			}
 		}
 	}
