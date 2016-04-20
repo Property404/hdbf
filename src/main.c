@@ -6,16 +6,18 @@
 #include <stdlib.h>
 #define HDBF_VERSION "hdbf 1.0"
 #define HDBF_USAGE "Usage: hdbf [options] [filename | -i cmd]\n"
+
 int main(int argc, char *argv[])
 {
 	/* File Variables */
-	char *filename = (char *) 0;
+	char *filename = (char*) 0;
 	int filename_set = 0;
 
 	/* Prepare options variables */
 	int options = 0;
 	SET_OPTIONS_VARIABLE(options);
 
+	/* Parse arguments */
 	if (argc <= 1) {
 		/* No arguments */
 		fprintf(stderr, "hdbf: no arguments\n" HDBF_USAGE);
@@ -25,7 +27,7 @@ int main(int argc, char *argv[])
 
 		/* Look through arguments */
 		for (i = 1; i < argc; i++) {
-			if (argv[i][0] == '-') {
+			if ((argv[i])[0] == '-') {
 				/* Check for valid options */
 				for (j = 1; argv[i][j] != '\0'; j++) {
 					int new_option =
@@ -41,9 +43,12 @@ int main(int argc, char *argv[])
 				}
 			} else {
 				/* Set file name */
+				int j;
 				filename =
-				    malloc(sizeof(char) * strlen(argv[i]));
-				strcpy(filename, argv[i]);
+				    malloc(sizeof(char) * (1+strlen(argv[i])));
+				for (j=0;(argv[i])[j]!='\0';j++)
+					filename[j]=(argv[i])[j];
+				filename[j]=0;
 				filename_set = 1;
 				break;
 			}
@@ -63,8 +68,9 @@ int main(int argc, char *argv[])
 		printf(HDBF_VERSION "\n");
 	} else if (HAS_OPTION(OPT_STRING)) {
 		if (filename_set) {
-			if (HAS_OPTION(OPT_OPTIMIZE))
+			if (HAS_OPTION(OPT_OPTIMIZE)){
 				optimize(filename, options);
+			}
 			run(filename, options);
 		} else {
 			fprintf(stderr, "hdbf: no command\n" HDBF_USAGE);

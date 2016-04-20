@@ -14,8 +14,8 @@ void run(const char *code, int options)
 	int *loopqueue = malloc(sizeof(int));	/* loop list */
 	char *buffer = malloc(sizeof(char));	/* alloc now so it doesn't fail on `free` */
 	int loops = 0;		/* Number of loops */
-	int offness = -1;	/*Indicates offness (value is -1 or location of loop) */
-
+	int offness = -1;	/* Indicates offness (value is -1 or location of loop) */
+	
 	/* World variables */
 	struct Cell *root = malloc(sizeof(struct Cell));
 	struct Cell *cell = root;
@@ -178,6 +178,7 @@ void run(const char *code, int options)
 				cell->value = getchar();
 				break;
 			case '?':
+				/* Print out coordinates if debugging is on */
 				if (HAS_OPTION(OPT_DEBUG)) {
 					printf("[(");
 					for (v = 0; v < dim; v++) {
@@ -190,6 +191,7 @@ void run(const char *code, int options)
 				}
 				break;
 			case '#':
+				/* Print out cell if debugging is on */
 				if (HAS_OPTION(OPT_DEBUG)) {
 					printf("{(");
 					for (v = 0;
