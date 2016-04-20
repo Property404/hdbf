@@ -9,7 +9,7 @@
 int main(int argc, char *argv[])
 {
 	/* File Variables */
-	char *filename;
+	char *filename = (char *) 0;
 	int filename_set = 0;
 
 	/* Prepare options variables */
@@ -18,8 +18,7 @@ int main(int argc, char *argv[])
 
 	if (argc <= 1) {
 		/* No arguments */
-		fprintf(stderr,
-			"hdbf: no arguments\n"HDBF_USAGE);
+		fprintf(stderr, "hdbf: no arguments\n" HDBF_USAGE);
 		exit(1);
 	} else {
 		int i, j;
@@ -51,23 +50,24 @@ int main(int argc, char *argv[])
 		}
 	}
 	if (HAS_OPTION(OPT_HELP)) {
-		printf(HDBF_USAGE"\n"
+		printf(HDBF_USAGE "\n"
 		       "Options:\n"
 		       "\t-h\tPrint help message\n"
 		       "\t-o\tOptimize before running\n"
 		       "\t-u\tDo not optimize(default)\n"
 		       "\t-b\tRun regular Brainfuck\n"
 		       "\t-v\tDisplay version number\n"
-                       "\t-d\tAllow debugging commands\n"
-                       "\t-i cmd\tPass string as code\n");
+		       "\t-d\tAllow debugging commands\n"
+		       "\t-i cmd\tPass string as code\n");
 	} else if (HAS_OPTION(OPT_VER)) {
 		printf(HDBF_VERSION "\n");
 	} else if (HAS_OPTION(OPT_STRING)) {
-		if(filename_set){
-			if(HAS_OPTION(OPT_OPTIMIZE))optimize(filename, options);
+		if (filename_set) {
+			if (HAS_OPTION(OPT_OPTIMIZE))
+				optimize(filename, options);
 			run(filename, options);
-		}else{
-			fprintf(stderr, "hdbf: no command\n"HDBF_USAGE);
+		} else {
+			fprintf(stderr, "hdbf: no command\n" HDBF_USAGE);
 			exit(1);
 		}
 	} else if (filename_set) {
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 		/* Free everything */
 		free(fp_contents);
 	} else {
-		fprintf(stderr, "hdbf: no input files\n"HDBF_USAGE);
+		fprintf(stderr, "hdbf: no input files\n" HDBF_USAGE);
 		return 1;
 	}
 
