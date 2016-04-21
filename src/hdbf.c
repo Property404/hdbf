@@ -15,7 +15,7 @@ void run(const char *code, int options)
 	char *buffer = malloc(sizeof(char));	/* alloc now so it doesn't fail on `free` */
 	int loops = 0;		/* Number of loops */
 	int offness = -1;	/* Indicates offness (value is -1 or location of loop) */
-	
+
 	/* World variables */
 	struct Cell *root = malloc(sizeof(struct Cell));
 	struct Cell *cell = root;
@@ -199,11 +199,9 @@ void run(const char *code, int options)
 					     v++) {
 						printf("%d%c",
 						       cell->coord[v],
-						       (v ==
-							(unsigned) (cell->
-								    dim -
-								    1)) ?
-						       ')' : ',');
+						       (v == (unsigned)
+							(cell->dim -
+							 1)) ? ')' : ',');
 					}
 					printf("=%d}\n", cell->value);
 				}

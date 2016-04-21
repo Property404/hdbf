@@ -22,12 +22,16 @@ void optimize(char *code, int options)
 	for (i = 0, j = 0; i < len; i++) {
 		/* Add pairless valid characters */
 		if (i < (len - 2) && code[i] == OPPOSITE(code[i + 1])) {
+			/* Skip next character */
 			i += 1;
 		} else if (VALID_CHAR(code[i])) {
+			/* Add character */
 			code[j] = code[i];
 			j++;
 		}
 	}
+
+	/* Add null terminator */
 	code[j] = 0;
 
 	/* Recurse */

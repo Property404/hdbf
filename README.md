@@ -21,7 +21,7 @@ Debug Commands (enabled with `-d`):
 `?` - print out current coordinates
 
 # Interdimensional Travel
-The `^` and `V` commands do not change the current cell, but only the direction in which the pointer will travel. Note that `^V` and `V^` is useless code, because the cancel each other out. A good way to think about this is a simple array of nodes, storing the cell's values and coordinates. For example, the list at the start of a program may be '{(0)=0}' where the cell at position `0` is equal to `0`. At the end of the program, the list may be `{(0)=5,(0,1)=2,(1,1,1)=3,(1,5)=7, ...}`  
+The `^` and `V` commands do not change the current cell, but only the direction in which the pointer will travel. Note that `^V` and `V^` is useless code, because the cancel each other out. A good way to think about this is a simple array of nodes, storing the cell's values and coordinates. For example, the list at the start of a program may be `{(0)=0}` where the cell at position `0` is equal to `0`. At the end of the program, the list may be `{(0)=5,(0,1)=2,(1,1,1)=3,(1,5)=7, ...}`  
 
 The `<` and `>` commands will actually switch to a different node in the array. For example, starting at coordinate `(0)`, `^>>>^^>>` will go to the cell at position `(0,3,0,2)`  
 

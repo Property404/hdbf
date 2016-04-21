@@ -4,13 +4,13 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define HDBF_VERSION "hdbf 1.0"
+#define HDBF_VERSION "hdbf 1.1"
 #define HDBF_USAGE "Usage: hdbf [options] [filename | -i cmd]\n"
 
 int main(int argc, char *argv[])
 {
 	/* File Variables */
-	char *filename = (char*) 0;
+	char *filename = "";
 	int filename_set = 0;
 
 	/* Prepare options variables */
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	if (argc <= 1) {
 		/* No arguments */
 		fprintf(stderr, "hdbf: no arguments\n" HDBF_USAGE);
-		exit(1);
+		return EXIT_FAILURE;
 	} else {
 		int i, j;
 
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 						fprintf(stderr,
 							"hdbf: no option `%c`\n",
 							argv[i][j]);
-						return 1;
+						return EXIT_FAILURE;
 					}
 					ADD_OPTION(new_option);
 				}
@@ -45,10 +45,11 @@ int main(int argc, char *argv[])
 				/* Set file name */
 				int j;
 				filename =
-				    malloc(sizeof(char) * (1+strlen(argv[i])));
-				for (j=0;(argv[i])[j]!='\0';j++)
-					filename[j]=(argv[i])[j];
-				filename[j]=0;
+				    malloc(sizeof(char) *
+					   (1 + strlen(argv[i])));
+				for (j = 0; (argv[i])[j] != '\0'; j++)
+					filename[j] = (argv[i])[j];
+				filename[j] = '\0';
 				filename_set = 1;
 				break;
 			}
@@ -65,16 +66,18 @@ int main(int argc, char *argv[])
 		       "\t-d\tAllow debugging commands\n"
 		       "\t-i cmd\tPass string as code\n");
 	} else if (HAS_OPTION(OPT_VER)) {
+		/* Print out version number */
 		printf(HDBF_VERSION "\n");
 	} else if (HAS_OPTION(OPT_STRING)) {
+		/* Interpret from argument */
 		if (filename_set) {
-			if (HAS_OPTION(OPT_OPTIMIZE)){
+			if (HAS_OPTION(OPT_OPTIMIZE)) {
 				optimize(filename, options);
 			}
 			run(filename, options);
 		} else {
 			fprintf(stderr, "hdbf: no command\n" HDBF_USAGE);
-			exit(1);
+			return EXIT_FAILURE;
 		}
 	} else if (filename_set) {
 		/* Open file for reading */
@@ -88,7 +91,7 @@ int main(int argc, char *argv[])
 			fprintf(stderr, "hdbf: file \"%s\" not found\n",
 				filename);
 			free(filename);
-			return 1;
+			return EXIT_FAILURE;
 		}
 
 		/* Get size */
@@ -112,11 +115,11 @@ int main(int argc, char *argv[])
 		free(fp_contents);
 	} else {
 		fprintf(stderr, "hdbf: no input files\n" HDBF_USAGE);
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 	/* Finish */
 	if (filename_set)
 		free(filename);
-	return 0;
+	return EXIT_SUCCESS;
 }

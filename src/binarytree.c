@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "binarytree.h"
 
@@ -9,14 +8,16 @@ static int compare(struct Cell a, int *bcoord, int bdim)
 
 	/* Compare up to the first zero */
 	for (i = 0; i < (a.dim > bdim ? bdim : a.dim); i++) {
-		if (a.coord[i] != bcoord[i])
-			return a.coord[i] > bcoord[i] ? 1 : -1;
+		if (a.coord[i] != bcoord[i]) {
+			return (a.coord[i] > bcoord[i]) ? 1 : -1;
+		}
 	}
 
 	/* Compare from the first zero onwards */
 	for (; i < (a.dim > bdim ? a.dim : bdim); i++) {
-		if (a.dim > bdim ? a.coord[i] : bcoord[i] != 0)
-			return (a.dim > bdim ? 1 : -1);
+		if ((a.dim > bdim ? a.coord[i] : bcoord[i]) != 0) {
+			return ((a.dim > bdim) ? 1 : -1);
+		}
 	}
 	return 0;
 }
@@ -75,7 +76,6 @@ struct Cell *traverseWorld(struct Cell *root, int *bcoord, int bdim)
 			return root->right;
 		} else {
 			/* Recurse rightwise */
-
 			return traverseWorld(root->right, bcoord, bdim);
 		}
 	} else {
