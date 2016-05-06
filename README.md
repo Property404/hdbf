@@ -9,8 +9,8 @@ between vectors using the `^` and `V` commands.
 `-` - decrease current cell  
 `>` - shift positively along current vector  
 `<` - shift negatively along current vector  
-`^` - switch to a vector parallel to the next dimensional axis, that pass through the current cell  
-`V` - switch to a vector parallel to the previous dimension axis, that pass through the current cell  
+`^` - switch to a vector parallel to the next dimensional axis, that passes through the current cell  
+`V` - switch to a vector parallel to the previous dimension axis, that passes through the current cell  
 `.` - print out contents of current cell  
 `,` - input from STDIN  
 `[` - skip to matching `]` if cell values zero  
