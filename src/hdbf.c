@@ -55,7 +55,7 @@ void run(const char *code, int options)
 				if (buffer == NULL) {
 					fprintf(stderr,
 						"hdbf: runtime error: memory allocation error\n");
-					exit(1);
+					exit(EXIT_FAILURE);
 				}
 				memcpy(buffer, loopqueue,
 				       (loops - 1) * sizeof(int));
@@ -68,7 +68,7 @@ void run(const char *code, int options)
 				if (loops <= 0) {
 					fprintf(stderr,
 						"hdbf: runtime error: loops below bounds\n");
-					exit(1);
+					exit(EXIT_FAILURE);
 				}
 
 				loopqueue[loops - 1] = i;
