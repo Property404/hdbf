@@ -16,13 +16,13 @@
 
 	/* List of possible options 
 	   Values are by powers of 2 */
-#    define OPT_NONE 0		/* Empty option */
-#    define OPT_OPTIMIZE 1<<0	/* Optimize HDBF code before interpreting */
-#    define OPT_HELP 1<<1	/* Display help message (do not interpret) */
-#    define OPT_PUREBF 1<<2	/* Interpret Brainfuck instead of HDBF */
-#    define OPT_VER 1<<3	/* Show version number */
-#    define OPT_DEBUG 1<<4	/* Allow debug commands */
-#    define OPT_STRING 1<<5	/* Lets argument string run as code instead of file */
+#    define OPT_NONE (0)	/* Empty option */
+#    define OPT_OPTIMIZE (1<<0)	/* Optimize HDBF code before interpreting */
+#    define OPT_HELP (1<<1)	/* Display help message (do not interpret) */
+#    define OPT_PUREBF (1<<2)	/* Interpret Brainfuck instead of HDBF */
+#    define OPT_VER (1<<3)	/* Show version number */
+#    define OPT_DEBUG (1<<4)	/* Allow debug commands */
+#    define OPT_STRING (1<<5)	/* Lets argument string run as code instead of file */
 
 
 	/* Get option from option code */
