@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define HDBF_VERSION "hdbf 1.1"
+#define HDBF_VERSION "hdbf 1.2"
 #define HDBF_USAGE "Usage: hdbf [options] [filename | -i cmd]\n"
 
 int main(int argc, char *argv[])
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 		       "\t-b\tRun regular Brainfuck\n"
 		       "\t-v\tDisplay version number\n"
 		       "\t-d\tAllow debugging commands\n"
-		       "\t-i cmd\tPass string as code\n");
+		       "\t-i str\tPass string as code\n");
 	} else if (HAS_OPTION(OPT_VER)) {
 		/* Print out version number */
 		printf(HDBF_VERSION "\n");

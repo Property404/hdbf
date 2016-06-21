@@ -5,8 +5,8 @@ Rays parallel to the axis of each dimension in the world are called "vectors," a
 between vectors using the `^` and `V` commands.  
 
 # Commands:  
-`+` - increase current cell  
-`-` - decrease current cell  
+`+` - increment value of current cell  
+`-` - decrement value of current cell  
 `>` - shift positively along current vector  
 `<` - shift negatively along current vector  
 `^` - switch to a vector parallel to the next dimensional axis, that passes through the current cell  
