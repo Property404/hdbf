@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 		       "\t-b\tRun regular Brainfuck\n"
 		       "\t-v\tDisplay version number\n"
 		       "\t-d\tAllow debugging commands\n"
-		       "\t-i str\tPass string as code\n");
+		       "\t-i cmd\tPass string as code\n");
 	} else if (HAS_OPTION(OPT_VER)) {
 		/* Print out version number */
 		printf(HDBF_VERSION "\n");
