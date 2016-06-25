@@ -33,15 +33,34 @@ int main(int argc, char *argv[])
 					int new_option =
 					    GET_OPTION(argv[i][j]);
 					if (new_option == OPT_NONE) {
-						/* Option is invalid, abort */
-						fprintf(stderr,
-							"hdbf: no option `%c`\n",
-							argv[i][j]);
-						return EXIT_FAILURE;
+						/* Check if "--h[elp]" or "--[version]" */
+						if (argv[i][j] == '-'
+						    && (argv[i][j + 1] ==
+							'h'
+							|| argv[i][j +
+								   1] ==
+							'v')) {
+							ADD_OPTION
+							    (GET_OPTION
+							     (argv[i]
+							      [j + 1]));
+							break;
+						} else {
+							/* Option is invalid, abort */
+							fprintf(stderr,
+								"hdbf: no option `%c`\n",
+								argv[i]
+								[j]);
+							return
+							    EXIT_FAILURE;
+						}
 					}
+
 					ADD_OPTION(new_option);
 				}
-			} else {
+			}
+
+			else {
 				/* Set file name */
 				int j;
 				filename =
@@ -85,11 +104,10 @@ int main(int argc, char *argv[])
 		int fp_size;
 		char *fp_contents;
 		fp = fopen(filename, "rb");
-
 		/* Check for errors */
 		if (fp == NULL) {
-			fprintf(stderr, "hdbf: file \"%s\" not found\n",
-				filename);
+			fprintf(stderr,
+				"hdbf: file \"%s\" not found\n", filename);
 			free(filename);
 			return EXIT_FAILURE;
 		}
@@ -98,19 +116,16 @@ int main(int argc, char *argv[])
 		fseek(fp, 0, SEEK_END);
 		fp_size = ftell(fp);
 		fseek(fp, 0, SEEK_SET);
-
 		/* Read file */
 		fp_contents = malloc((sizeof(char) + 1) * fp_size);
 		fp_contents[fp_size] = '\0';	/* Terminate with null */
 		fread(fp_contents, 1, fp_size, fp);
 		fclose(fp);
-
 		/* Interpret source code */
 		if (HAS_OPTION(OPT_OPTIMIZE)) {
 			optimize(fp_contents, options);
 		}
 		run(fp_contents, options);
-
 		/* Free everything */
 		free(fp_contents);
 	} else {

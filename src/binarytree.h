@@ -1,5 +1,5 @@
 #ifndef HEADER_BINARYTREE
-#    define HEADER_BINARYTREE 1
+#define HEADER_BINARYTREE 1
 /*
 	The HDBF World is represented as a binary tree
 	Each cell is a node/leaf in the tree(referred to as "World")
