@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 					int new_option =
 					    GET_OPTION(argv[i][j]);
 					if (new_option == OPT_NONE) {
-						/* Check if "--h[elp]" or "--[version]" */
+						/* Check if "--h[elp]" or "--[v]ersion" */
 						if (argv[i][j] == '-'
 						    && (argv[i][j + 1] ==
 							'h'

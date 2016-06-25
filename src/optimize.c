@@ -32,7 +32,7 @@ void optimize(char *code, int options)
 	}
 
 	/* Add null terminator */
-	code[j] = 0;
+	code[j] = '\0';
 
 	/* Recurse */
 	if (len != j) {
