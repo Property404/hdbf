@@ -11,7 +11,10 @@
 void optimize(char *code, int options)
 {
 	unsigned int i, j;
+	/* We're calling strlen here because it is brought up more than once in the code below */
 	unsigned int len = strlen(code);
+
+	/* We're only setting options to know if we need to optimize debug symbols */
 	SET_OPTIONS_VARIABLE(options);
 
 	/* Return if code is empty string */

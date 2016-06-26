@@ -11,7 +11,7 @@
 #define RM_OPTION(n) ((HAS_OPTION(n)?*__option_var__^=n:*__option_var__))
 
 	/* Add 'n' to options */
-#define ADD_OPTION(n) ((n>0?*__option_var__|=n:RM_OPTION(-n)))
+#define ADD_OPTION(n) ((n>0?*__option_var__|=n:RM_OPTION(-n)));
 
 
 	/* List of possible options 
