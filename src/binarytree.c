@@ -54,7 +54,7 @@ void deleteWorld(struct Cell *root)
 	}
 }
 
-/* traverse/insert cell into world*/
+/* traverse/insert cell into world */
 struct Cell *traverseWorld(struct Cell *root, int *bcoord, int bdim)
 {
 	int i;

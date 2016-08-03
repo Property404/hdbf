@@ -14,9 +14,9 @@ struct Cell {
 	int dim;		/* # Of coordinates. should be AT LEAST 1 */
 };
 
-/* Find matching cell, make new one if it doesn't exist*/
+/* Find matching cell, make new one if it doesn't exist */
 struct Cell *traverseWorld(struct Cell *root, int *bcoord, int bdim);
 
-/* Free entire world except root*/
+/* Free entire world except root */
 void deleteWorld(struct Cell *root);
 #endif
