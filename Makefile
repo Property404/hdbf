@@ -4,8 +4,13 @@ SHELL = /bin/sh
 SRC_DIR = ./src/
 
 # Where to install
-POSIX_DIR = /usr/local/bin/
-WIN32_DIR = /windows/system32/
+ifeq ($(OS),Windows_NT)
+	EXECUTABLE_NAME  = hdbf.exe
+	INSTALL_DIR = /windows/system32/
+else
+	EXECUTABLE_NAME = hdbf
+	INSTALL_DIR = /usr/local/bin/
+endif
 
 # Compiler flags
 CC = cc # FreeBSD uses Clang, linked by 'cc'
@@ -15,15 +20,14 @@ SOURCES = $(FILES:%.c=$(SRC_DIR)/%.c)
 
 # Build recipe
 hdbf:
-	$(CC) -o hdbf $(SOURCES) $(CFLAGS)
+	$(CC) -o $(EXECUTABLE_NAME) $(SOURCES) $(CFLAGS)
 
 # Clean nastiness
 clean:
-	rm -f hdbf hdbf.exe
+	rm -f $(EXECUTABLE_NAME)
 
-# Install accroding to either POSIX or win32
+# Install according to either POSIX or win32
 install:
-	install hdbf $(POSIX_DIR)
-
+	install $(EXECUTABLE_NAME) $(INSTALL_DIR)
 uninstall:
-	rm  $(POSIX_DIR)hdbf
+	rm  $(INSTALL_DIR)hdbf
