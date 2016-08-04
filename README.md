@@ -42,3 +42,10 @@ To go from the bottom, left, front corner of the cube, i.e `(0,0,0)` to the top,
 
 For a 4x4x4x4 tesseract:  
 `>>>^>>>^>>>^>>>`
+# Install:
+    git clone https://github.com/Property404/hdbf
+    cd hdbf
+    make
+    sudo make install
+    # test
+    hdbf ./examples/LostKingdom.bf
