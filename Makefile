@@ -4,13 +4,11 @@ SHELL = /bin/sh
 SRC_DIR = ./src/
 
 # Where to install
-ifeq ($(OS),Windows_NT)
-	EXECUTABLE_NAME  = hdbf.exe
-	INSTALL_DIR = /windows/system32/
-else
-	EXECUTABLE_NAME = hdbf
-	INSTALL_DIR = /usr/local/bin/
-endif
+# If running on Windows/ReactOS, change INSTALL_DIR
+# to some folder in %PATH%, and EXECUTABLE_NAME to
+# hdbf.exe
+INSTALL_DIR = /usr/local/bin/
+EXECUTABLE_NAME = hdbf
 
 # Compiler flags
 CC = cc # FreeBSD uses Clang, linked by 'cc'
