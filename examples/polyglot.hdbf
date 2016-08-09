@@ -1,7 +1,10 @@
-#/*>>>>>>>[-][*/
-#include <stdio.h>/*]
-print("Python Code");"""
-+>^^>V<<-[[-]++++++++++[->+++>++++>+++++++>++++++++++>+++++++++++>++++++++++++<<<<<<]>>>
+#/*[ This program writes "[language] code" depending on the language;
+#	Languages supported: C,Obj-C,C++,Hyperdimensional Brainfuck
+#	Brainfuck, Ook, and Python ]>>>>>>>[-][*/
+#include <stdio.h>/*
+from sys import version;
+print("Python{} Code".format(version[0]));"""
+]+>^^>V<<-[[-]++++++++++[->+++>++++>+++++++>++++++++++>+++++++++++>++++++++++++<<<<<<]>>>
 
 ++.>>>+.<++.<+.>++.<<<+++++.>----.>++++.>-----.<----.>+.+++++.<+++
 
