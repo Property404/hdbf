@@ -29,7 +29,6 @@
 #define GET_OPTION(n) (\
 	n=='h'?OPT_HELP:\
 	n=='o'?OPT_OPTIMIZE:\
-	n=='u'?-OPT_OPTIMIZE:\
 	n=='b'?OPT_PUREBF:\
 	n=='v'?OPT_VER:\
 	n=='d'?OPT_DEBUG:\

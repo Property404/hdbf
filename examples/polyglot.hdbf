@@ -1,10 +1,51 @@
-[This program writes the text "Hyper-Dimensional Brainfuck Code" when run with `hdbf polyglot.hdbf`, but writes "Brainfuck Code" when run with `hdbf -b polyglot.hdbf`]
-
+#/*>>>>>>>[-][*/
+#include <stdio.h>/*]
+print("Python Code");"""
 +>^^>V<<-[[-]++++++++++[->+++>++++>+++++++>++++++++++>+++++++++++>++++++++++++<<<<<<]>>>
+
 ++.>>>+.<++.<+.>++.<<<+++++.>----.>++++.>-----.<----.>+.+++++.<+++
+
 +.>----.-.<--------.>--.<<<<++.[-]]>[[-]>]+++++ +++[- >++++ ++++< ]>++. <++++ ++[-> +++++ 
+
 +<]>+ +++++ +++++ +.<++++[-> ----< ]>-.+ +++++ ++.++ +++.- ----- --.<+ ++[-> +++<] >++++ 
+
 ++.<+
 +++[- >---- <]>-- .++++ ++++. <++++ ++++[ ->--- ----- <]>-- ----- ----.<++++ +[->+ ++++< 
+
 ]>+++ +++++ ++.<+ +++++ [->++ ++++< ]>+++ +++++ .<+++
-[->-- -<]>- -.+.< [-]++++++++++.[-]
+[->-- -<]>- -.+.< [-]++++++++++.[-][
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook!
+Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook?
+Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook?
+Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook! Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook!
+Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook!
+Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook!
+Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook!
+Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook! Ook! Ook! Ook. Ook? Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook.
+Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook!
+Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook!
+Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook?
+Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook.
+Ook? Ook! Ook! Ook! Ook! Ook! Ook. Ook. Ook. Ook! Ook. Ook? Ook.]*/
+int main(){
+	#ifdef __cplusplus
+	printf("C++ Code\n");
+	#elif __OBJC__
+	printf("Objective-C Code\n");
+	#else
+	printf("C Code\n");
+	#endif
+}/*
+"""
+#*/

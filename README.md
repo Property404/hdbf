@@ -49,3 +49,11 @@ For a 4x4x4x4 tesseract:
     sudo make install
     # test
     hdbf ./examples/LostKingdom.bf
+
+# Command Line Usage:
+    hdbf somefile.hdbf //Run some file
+    hdbf -o somefile.hdbf // Run optimized version of some file
+    hdbf -b somefile.hdbf // Run some file as pure brainfuck
+    hdbf -d somefile.hdbf // Run some file in debug mode
+    hdbf -di "+++++++>^^+++#" // Run command in debug mode
+    hdbf --help // Display help

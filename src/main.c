@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define HDBF_VERSION "hdbf 1.3 (nonrelease-commit1)"
+#define HDBF_VERSION "hdbf 1.3 (nonrelease-commit5)"
 #define HDBF_USAGE "Usage: hdbf [options] [filename | -i cmd]\n"
 
 int main(int argc, char *argv[])
@@ -96,7 +96,6 @@ int main(int argc, char *argv[])
 		       "Options:\n"
 		       "\t-h\tPrint help message\n"
 		       "\t-o\tOptimize before running\n"
-		       "\t-u\tDo not optimize(default)\n"
 		       "\t-b\tRun regular Brainfuck\n"
 		       "\t-v\tDisplay version number\n"
 		       "\t-d\tAllow debugging commands\n"
