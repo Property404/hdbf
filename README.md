@@ -1,7 +1,7 @@
 # Hyper-Dimensional Brainfuck
 
 Hyper-Dimensional Brainfuck is an infinite-dimensional version of the Brainfuck programming language. Instead of a tape, we have a "world."
-Rays parallel to the axis of each dimension in the world are called "vectors," and act very much like the Brainfuck tape. You can switch
+Lines within the world are called "vectors," and act very much like the Brainfuck tape. You can switch
 between vectors using the `^` and `V` commands.  
 
 # Commands:  
@@ -9,11 +9,11 @@ between vectors using the `^` and `V` commands.
 `-` - decrement value of current cell  
 `>` - shift positively along current vector  
 `<` - shift negatively along current vector  
-`^` - switch to a vector parallel to the next dimensional axis, that passes through the current cell  
-`V` - switch to a vector parallel to the previous dimension axis, that passes through the current cell  
+`^` - switch to a vector, parallel to the next dimensional axis, that passes through the current cell  
+`V` - switch to a vector, parallel to the previous dimension axis, that passes through the current cell  
 `.` - print out contents of current cell  
-`,` - input from STDIN  
-`[` - skip to matching `]` if cell values zero  
+`,` - replace contents of current cell with input from STDIN  
+`[` - skip past matching `]` if current cell values zero  
 `]` - return to matching `[`  
 
 Debug Commands (enabled with `-d`):  
