@@ -5,5 +5,6 @@
 !*.bf
 !*.hdbf
 !.gitignore
+!src/style
 !Makefile
 !*/

@@ -46,6 +46,13 @@ void run(const char *code, int options)
 		if (offness == -1 || code[i] == ']' || code[i] == '[') {
 			switch (code[i]) {
 			case '[':
+				/* Speed boost for resets */
+				if (code[i + 1] == '-'
+				    && code[i + 2] == ']') {
+					cell->value = 0;
+					i += 2;
+					break;
+				}
 				/* Increment size of loop queue */
 				loops++;
 
