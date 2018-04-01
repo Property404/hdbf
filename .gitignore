@@ -2,7 +2,7 @@
 !*.c
 !*.h
 !*.md
-!*.bf
+!*.b
 !*.hdbf
 !.gitignore
 !src/style

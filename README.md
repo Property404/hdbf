@@ -48,7 +48,7 @@ For a 4x4x4x4 tesseract:
     make
     sudo make install
     # test
-    hdbf ./examples/LostKingdom.bf
+    hdbf ./examples/LostKingdom.b
 
 # Command Line Usage:
     hdbf somefile.hdbf //Run some file
