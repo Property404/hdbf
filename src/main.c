@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define HDBF_VERSION "hdbf 1.3.0"
+#define HDBF_VERSION "hdbf 1.3.1"
 #define HDBF_USAGE "Usage: hdbf [options] [filename | -i cmd]\n"
 
 int main(int argc, char *argv[])
