@@ -1,0 +1,28 @@
+sudo: required
+
+# Enable C++ support
+language: c
+
+os:
+  - linux
+  - osx
+
+# Compiler selection
+compiler:
+  - clang
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install clang; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ruby --version; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm install ruby-2.3.3; rvm --default use 2.3.3; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ruby --version; fi
+
+install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  
+# Build steps
+script:
+  - make
+  - sudo make install
+  - hdbf examples/hello.b

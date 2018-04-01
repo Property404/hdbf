@@ -3,6 +3,7 @@
 !*.h
 !*.md
 !*.b
+!.travis.yml
 !*.hdbf
 !.gitignore
 !src/style
