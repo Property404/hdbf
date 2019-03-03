@@ -33,6 +33,9 @@ void run(const char *code, int options)
 	/* Set initial coordinates */
 	coord[0] = 0;
 
+	/* add random source */
+	FILE *rand = fopen("/dev/urandom", "r");
+
 	/* Set up binary tree */
 	root->right = NULL;
 	root->left = NULL;
@@ -180,6 +183,9 @@ void run(const char *code, int options)
 				break;
 			case '.':
 				putchar(cell->value);
+				break;
+			case '%':
+				cell->value = (char)fgetc(rand);
 				break;
 			case ',':
 				cell->value = getchar();
