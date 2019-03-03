@@ -14,7 +14,7 @@ between vectors using the `^` and `V` commands.
 `.` - print out contents of current cell  
 `,` - replace contents of current cell with input from STDIN  
 `[` - skip past matching `]` if current cell values zero  
-`]` - return to matching `[` 
+`]` - return to matching `[`  
 `%` - random contents of current cell  
 
 Debug Commands (enabled with `-d`):  
