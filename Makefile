@@ -1,7 +1,8 @@
 SHELL = /bin/sh
 
 # Where the files are
-SRC_DIR = ./src/
+SRC_DIR = ./src
+OBJ_DIR = ./objects
 
 # Where to install
 # For Windows/ReactOS:
@@ -13,18 +14,20 @@ INSTALL_COMMAND = install
 EXECUTABLE_NAME = hdbf
 
 # Compiler flags
-CC = cc # More portable than using 'gcc,' but with risk
-	# of calling wrong compiler
 CFLAGS = -Wall -Wextra -pedantic -O2 -ansi
-FILES = optimize.c binarytree.c hdbf.c main.c
-SOURCES = $(FILES:%.c=$(SRC_DIR)/%.c)
+OBJECTS = $(addprefix $(OBJ_DIR)/,optimize.o binarytree.o hdbf.o main.o)
 
 # Build recipe
-hdbf:
-	$(CC) -o $(EXECUTABLE_NAME) $(SOURCES) $(CFLAGS)
-clean:
-	rm -f $(EXECUTABLE_NAME)
-install:
+$(EXECUTABLE_NAME): $(OBJ_DIR) $(OBJECTS)
+	$(CC) -o $(EXECUTABLE_NAME) $(OBJECTS) $(CFLAGS)
+$(OBJECTS): $(OBJ_DIR)%.o : $(SRC_DIR)%.c
+	cc -c -o $@ $^ $(CFLAGS)
+$(OBJ_DIR):
+	mkdir $(OBJ_DIR)
+install: hdbf
 	$(INSTALL_COMMAND) $(EXECUTABLE_NAME) $(INSTALL_DIR)
 uninstall:
-	rm  $(INSTALL_DIR)/$(EXECUTABLE_NAME)
+	rm $(INSTALL_DIR)/$(EXECUTABLE_NAME)
+clean: $(OBJ_DIR)
+	rm -f $(EXECUTABLE_NAME) $(OBJECTS)
+	rmdir $(OBJ_DIR)
