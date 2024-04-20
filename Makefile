@@ -6,7 +6,7 @@ OBJ_DIR = ./objects
 
 # Where to install
 # For Windows/ReactOS:
-#	Change INSTALL_DIR to C:\windows\sytem32\
+#	Change INSTALL_DIR to C:\windows\system32\
 #	Change INSTALL_COMMAND to move
 #	Change EXECUTABLE_NAME to hdbf.exe
 INSTALL_DIR = /usr/local/bin/
